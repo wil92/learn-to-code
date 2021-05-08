@@ -16,5 +16,16 @@
         color: mat-color($primaryPalette);
       }
     }
+
+    .code-container {
+      min-height: 50vh;
+      margin-top: 20px;
+    }
+
+    .run-code-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+    }
   }
 }

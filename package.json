@@ -50,6 +50,7 @@
     "@nestjs/swagger": "^4.8.0",
     "@nrwl/angular": "12.1.1",
     "mongoose": "^5.12.7",
+    "ng2-ace-editor": "^0.3.9",
     "redis": "^3.1.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.6.3",

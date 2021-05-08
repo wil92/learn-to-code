@@ -2,6 +2,7 @@ import {Model} from "mongoose";
 import {Inject, Injectable} from '@nestjs/common';
 import {InjectModel} from "@nestjs/mongoose";
 import {ClientRedis} from "@nestjs/microservices";
+import {tap, timeout} from "rxjs/operators";
 
 import {Problem, ProblemDocument} from "../../schemas/problem.schema";
 import {ProblemDto} from "../../dtos/problem.dto";
@@ -25,7 +26,7 @@ export class ProblemService {
   }
 
   async create(problem: ProblemDto): Promise<Problem> {
-    const newProblem =  new this.problemModel(problem);
+    const newProblem = new this.problemModel(problem);
     return newProblem.save();
   }
 
@@ -53,15 +54,19 @@ export class ProblemService {
     const tests = await this.testService.findTestsByProblemId(id);
     const solution = await this.solutionService.createSolution(code, 'python3', problem['_id']);
 
-    const evalScript = process.env.EVAL_SCRIPT;
-
     // send new solution to redis
-    this.redisClient.send('EVAL_SOLUTION', {
-      solutionId: solution['_id'],
-      code,
-      tests: ['001'],
-      language
-    });
+    const res = await this.redisClient.send('EVAL_SOLUTION',
+      {
+        solutionId: solution['_id'],
+        code,
+        tests: ['001'],
+        language
+      })
+      .pipe(timeout(10000))
+      .toPromise();
+
+    console.log('redis response:', res);
+    await this.solutionService.updateSolutionStatus(res.solutionId, res.result);
 
     return solution['_id'];
   }

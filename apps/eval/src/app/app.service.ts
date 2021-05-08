@@ -2,8 +2,8 @@ import {spawn} from "child_process";
 import * as fs from 'fs';
 import * as path from 'path';
 
-import {Injectable} from '@nestjs/common';
-import {Client, ClientRedis, Transport} from "@nestjs/microservices";
+import {Inject, Injectable} from '@nestjs/common';
+import {ClientRedis} from "@nestjs/microservices";
 
 const fsp = fs.promises;
 
@@ -12,29 +12,24 @@ const resourcesPath = process.env.RESOURCES_PATH;
 @Injectable()
 export class AppService {
 
-  @Client({ transport: Transport.REDIS })
-  redisClient: ClientRedis;
-
-  constructor() {
+  constructor(@Inject('REDIS_SERVICE') private readonly redisClient: ClientRedis) {
   }
 
   async evalCode(solutionId: string, code: string, tests: string[], language: string) {
     const codePath = this.createCodeFile(code);
-    let result = true;
+    let result = '';
     for (let i = 0; i < tests.length; i++) {
       result = await this.evalSolution(code, tests[i], language, codePath);
-      if (!result) {
+      if (result !== 'ACCEPT') {
         break;
       }
     }
-    this.redisClient.send('EVAL_RESULT', {
-      result,
-      solutionId
-    });
     this.deleteCodeFile(codePath);
+
+    return {result, solutionId};
   }
 
-  async evalSolution(code: string, testName: string, language: string, codePath: string): Promise<boolean> {
+  async evalSolution(code: string, testName: string, language: string, codePath: string): Promise<string> {
 
     const testInputPath = path.join(resourcesPath, testName + '.input');
     const testOutputPath = path.join(resourcesPath, testName + '.output');
@@ -49,11 +44,16 @@ export class AppService {
     const streamOutput = fs.createWriteStream(tmpResultPath);
     python.stdout.pipe(streamOutput);
 
+    await new Promise(resolve => python.on('close', () => resolve(true)));
+
     const equals = await this.compareFiles(testOutputPath, tmpResultPath);
+    if (!equals) {
+      return 'WRONG_ANSWER'
+    }
 
     this.deleteCodeFile(tmpResultPath);
 
-    return equals;
+    return 'ACCEPT';
   }
 
   async compareFiles(file1: string, file2: string): Promise<boolean> {
@@ -96,7 +96,8 @@ export class AppService {
 
   createCodeFile(code: string): string {
     const codeId = this.getRandomId();
-    const codePath = path.join(resourcesPath, codeId + 'py');
+    const codePath = path.join(resourcesPath, codeId + '.py');
+    console.log('path', codePath);
     fs.writeFileSync(codePath, code);
     return codePath;
   }

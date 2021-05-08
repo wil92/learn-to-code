@@ -20,7 +20,7 @@ async function bootstrap() {
     },
   });
   await app.listen(() => {
-    Logger.log(`Connected to redis in: redis://${redisHost}:${redisPort}`);
+    Logger.log(`Microservice is started`);
   });
 }
 

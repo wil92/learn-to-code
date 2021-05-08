@@ -21,4 +21,18 @@
     <h2>Output Example</h2>
     <p>{{problem?.outputExample}}</p>
   </div>
+
+  <div fxFlex="80"
+       class="code-container"
+       fxLayout="column">
+    <div ace-editor
+         fxFlex="100"
+         [(text)]="code"
+    ></div>
+  </div>
+
+  <button mat-fab
+          class="run-code-button"
+          color="primary"
+          (click)="sendSolution()">run</button>
 </div>

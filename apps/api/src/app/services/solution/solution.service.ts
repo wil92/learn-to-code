@@ -21,7 +21,7 @@ export class SolutionService {
   async updateSolutionStatus(solutionId: string, status: string): Promise<Solution> {
     const solution = await this.solutionModel.findById(solutionId).exec();
     solution.status = status;
-    this.solutionModel.updateOne({_id: solutionId}, solution);
+    await this.solutionModel.updateOne({_id: solutionId}, solution);
     return solution;
   }
 }
