@@ -4,10 +4,12 @@ import {InjectModel} from "@nestjs/mongoose";
 
 import {Problem, ProblemDocument} from "../../schemas/problem.schema";
 import {ProblemDto} from "../../dtos/problem.dto";
+import {TestService} from "../test/test.service";
 
 @Injectable()
 export class ProblemService {
-  constructor(@InjectModel(Problem.name) private problemModel: Model<ProblemDocument>) {
+  constructor(@InjectModel(Problem.name) private problemModel: Model<ProblemDocument>,
+              private readonly testService: TestService) {
   }
 
   async findAll(): Promise<Problem[]> {
@@ -41,4 +43,11 @@ export class ProblemService {
     return editedProblem;
   }
 
+  async solveProblem(id: string): Promise<string> {
+    const problem = await this.findOneById(id);
+
+    const tests = this.testService.findTestsByProblemId(id);
+
+    return 'solution code';
+  }
 }
