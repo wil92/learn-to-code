@@ -1,0 +1,22 @@
+{
+  "implicitDependencies": {
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    ".eslintrc.json": "*"
+  },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "learn-to-code",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+    }
+  },
+  "projects": {
+    "learn-to-code": { "tags": [] },
+    "learn-to-code-e2e": {
+      "tags": [],
+      "implicitDependencies": ["learn-to-code"]
+    },
+    "api": { "tags": [] }
+  }
+}

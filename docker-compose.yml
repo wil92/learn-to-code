@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  learn_to_code:
+    build:
+      context: .
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+    ports:
+      - '127.0.0.1:4040:80'
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    env_file:
+      - .env
+    networks:
+      - blogdb
+
+networks:
+  blogdb:
+    external: true
