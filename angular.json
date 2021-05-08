@@ -74,7 +74,10 @@
               "apps/learn-to-code/src/favicon.ico",
               "apps/learn-to-code/src/assets"
             ],
-            "styles": ["./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css", "apps/learn-to-code/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "apps/learn-to-code/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -221,6 +224,60 @@
           "outputs": ["coverage/apps/api"],
           "options": {
             "jestConfig": "apps/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "eval": {
+      "root": "apps/eval",
+      "sourceRoot": "apps/eval/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/eval",
+            "main": "apps/eval/src/main.ts",
+            "tsConfig": "apps/eval/tsconfig.app.json",
+            "assets": ["apps/eval/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/eval/src/environments/environment.ts",
+                  "with": "apps/eval/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "eval:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/eval/tsconfig.app.json",
+              "apps/eval/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/eval/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/eval"],
+          "options": {
+            "jestConfig": "apps/eval/jest.config.js",
             "passWithNoTests": true
           }
         }

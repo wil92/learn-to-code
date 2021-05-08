@@ -15,7 +15,7 @@ export class Solution {
   language: string;
 
   @Prop()
-  result: string;
+  status: string;
 
   @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'Problem'})
   problem: Problem

@@ -36,6 +36,6 @@ export class ProblemController {
 
   @Post('solve/:id')
   solve(@Param() {id}, @Body() {code, language}: SolveDto) {
-
+    return this.problemService.solveProblem(id, code, language);
   }
 }
