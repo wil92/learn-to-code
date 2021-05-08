@@ -33,7 +33,7 @@ export class ProblemService {
     return this.http.put<Problem>(`${this.environment.apiUrl}/problems/${id}`, problem);
   }
 
-  sendSolution(code: string, problemId: string): Observable<string> {
-    return this.http.post<string>(`${this.environment.apiUrl}/problems/solve/${problemId}`, {code, language: 'python3'});
+  sendSolution(code: string, problemId: string): Observable<{result: string, solutionId: string}> {
+    return this.http.post<{result: string, solutionId: string}>(`${this.environment.apiUrl}/problems/solve/${problemId}`, {code, language: 'python3'});
   }
 }

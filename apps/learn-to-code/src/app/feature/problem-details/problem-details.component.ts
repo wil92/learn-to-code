@@ -16,6 +16,8 @@ export class ProblemDetailsComponent implements OnInit {
 
   code = 'x = int(input())\nfor i in range(x):\n    a, b = map(int, input().split())\n    print(a + b);';
 
+  status = '';
+
   constructor(private router: Router,
               private activeRouter: ActivatedRoute,
               private problemService: ProblemService) { }
@@ -26,8 +28,8 @@ export class ProblemDetailsComponent implements OnInit {
   }
 
   sendSolution() {
-    this.problemService.sendSolution(this.code, this.problem._id).subscribe(solutionId => {
-      console.log(solutionId);
+    this.problemService.sendSolution(this.code, this.problem._id).subscribe((res: {result: string, solutionId: string}) => {
+      this.status = res.result;
     });
   }
 }

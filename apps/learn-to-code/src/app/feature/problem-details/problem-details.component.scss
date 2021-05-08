@@ -2,7 +2,7 @@
 
 :host {
   .container {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 
     .problem-container {
@@ -15,6 +15,14 @@
       h1 {
         color: mat-color($primaryPalette);
       }
+
+      code {
+        white-space: pre-wrap;
+      }
+    }
+
+    .status-container {
+      margin-top: 20px;
     }
 
     .code-container {

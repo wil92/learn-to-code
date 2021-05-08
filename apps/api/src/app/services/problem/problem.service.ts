@@ -68,6 +68,6 @@ export class ProblemService {
     console.log('redis response:', res);
     await this.solutionService.updateSolutionStatus(res.solutionId, res.result);
 
-    return solution['_id'];
+    return res;
   }
 }

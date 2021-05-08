@@ -17,11 +17,22 @@
     <h2>Output Description</h2>
     <p>{{problem?.outputDescription}}</p>
     <h2>Input Example</h2>
-    <p>{{problem?.inputExample}}</p>
+    <code>{{problem?.inputExample}}</code>
     <h2>Output Example</h2>
-    <p>{{problem?.outputExample}}</p>
+    <code>{{problem?.outputExample}}</code>
   </div>
 
+  <div fxFlex="80"
+       fxLayout="row"
+       fxLayoutAlign="center center"
+       *ngIf="status"
+       class="status-container">
+    <mat-icon *ngIf="status === 'LOADING'">refresh</mat-icon>
+    <mat-icon class="mat-primary" *ngIf="status === 'ACCEPT'">done</mat-icon>
+    <mat-icon *ngIf="status === 'PENDING'">pending</mat-icon>
+    <mat-icon class="mat-error" *ngIf="status === 'WRONG_ANSWER'">error</mat-icon>
+    {{status}}
+  </div>
   <div fxFlex="80"
        class="code-container"
        fxLayout="column">
