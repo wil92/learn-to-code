@@ -1,0 +1,18 @@
+@import "apps/learn-to-code/src/variables";
+
+:host {
+  .container {
+    width: 100vw;
+    height: 100vh;
+
+    h1 {
+      color: mat-color($primaryPalette);
+    }
+
+    form {
+      background-color: mat-color($accentPalette);
+
+      padding: 20px;
+    }
+  }
+}

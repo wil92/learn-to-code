@@ -2,9 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import {Environment} from "../app/core/injectors/environment";
+
 export const environment = {
   production: false,
-};
+  apiUrl: 'http://localhost:3333/api'
+} as Environment;
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -1,5 +1,6 @@
 import {Module} from '@nestjs/common';
 import {MongooseModule} from "@nestjs/mongoose";
+import {SwaggerModule} from "@nestjs/swagger";
 
 import {AppController} from './controllers/app.controller';
 import {DatabaseModule} from "./schemas/database.module";
@@ -14,7 +15,8 @@ console.log(`mongodb://${databaseHost}:${databasePort}/${databaseName}`);
 @Module({
   imports: [
     MongooseModule.forRoot(`mongodb://${databaseHost}:${databasePort}/${databaseName}`),
-    DatabaseModule
+    DatabaseModule,
+    SwaggerModule
   ],
   controllers: [AppController],
   providers: [ProblemService],

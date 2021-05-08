@@ -1,1 +1,61 @@
-<p>problem works!</p>
+<div class="container"
+     fxLayout="row"
+     fxLayoutAlign="center start">
+  <form class="example-form"
+        fxFlex="80"
+        [formGroup]="form"
+        fxLayout="column">
+
+    <h1>{{isEditProblem ? 'Edit problem' : 'Create new problem'}}</h1>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Title</mat-label>
+      <input matInput
+             formControlName="title"
+             placeholder="Title">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput
+                formControlName="description"
+                placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Input description</mat-label>
+      <textarea matInput
+                formControlName="inputDescription"
+                placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Input example</mat-label>
+      <textarea matInput
+                formControlName="inputExample"
+                placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Output description</mat-label>
+      <textarea matInput
+                formControlName="outputDescription"
+                placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Output example</mat-label>
+      <textarea matInput
+                formControlName="outputExample"
+                placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <div>
+      <button mat-raised-button
+              color="primary"
+              (click)="saveProblem()">Save</button>
+      <button mat-raised-button
+              routerLink="/">Back</button>
+    </div>
+  </form>
+</div>

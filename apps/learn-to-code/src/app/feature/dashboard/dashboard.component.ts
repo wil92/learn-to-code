@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Problem} from "../../core/models/problem.model";
 import {MatTableDataSource} from "@angular/material/table";
+import {ProblemService} from "../../core/services/problem.service";
 
 @Component({
   selector: 'learn-to-code-dashboard',
@@ -31,9 +32,11 @@ export class DashboardComponent implements OnInit {
   displayedColumns: string[] = ['title', 'description', 'actions'];
   dataSource = new MatTableDataSource<Problem>(this.problems);
 
-  constructor() { }
+  constructor(private problemService: ProblemService) { }
 
   ngOnInit(): void {
+    this.problemService.getProblems().subscribe((problems) => {
+      this.dataSource = new MatTableDataSource<Problem>(problems);
+    });
   }
-
 }

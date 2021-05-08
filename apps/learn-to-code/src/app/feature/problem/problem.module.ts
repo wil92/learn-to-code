@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ProblemComponent } from './problem.component';
 import {ProblemRoutingModule} from "./problem-routing.module";
+import {MaterialModule} from "../../core/material/material.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import {ProblemRoutingModule} from "./problem-routing.module";
   ],
   imports: [
     CommonModule,
-    ProblemRoutingModule
+    ProblemRoutingModule,
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class ProblemModule { }
