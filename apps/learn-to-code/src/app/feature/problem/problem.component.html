@@ -1,5 +1,5 @@
 <div class="container"
-     fxLayout="row"
+     fxLayout="row wrap"
      fxLayoutAlign="center start">
   <form class="example-form"
         fxFlex="80"
@@ -49,13 +49,39 @@
                 formControlName="outputExample"
                 placeholder="Description"></textarea>
     </mat-form-field>
+  </form>
+
+  <div fxFlex="80"
+       class="file-container">
+
+    <div fxLayout="row">
+      <input type="file"
+             fxFlex="50"
+             #files
+             class="file-input"
+             multiple
+             placeholder="Description">
+
+      <div fxFlex="50" fxLayout="row wrap">
+        <div *ngFor="let test of tests"
+             class="test-element"
+             fxLayout="row">
+          <mat-icon (click)="deleteTest(test._id)">delete</mat-icon>
+          <a href="#">{{test.name + '.output'}}</a>
+          <a href="#">{{test.name + '.input'}}</a>
+        </div>
+      </div>
+
+    </div>
 
     <div>
       <button mat-raised-button
               color="primary"
-              (click)="saveProblem()">Save</button>
+              (click)="saveProblem()">Save
+      </button>
       <button mat-raised-button
-              routerLink="/">Back</button>
+              routerLink="/">Back
+      </button>
     </div>
-  </form>
+  </div>
 </div>

@@ -28,6 +28,8 @@
                 color="primary">Solve</button>
         <button mat-raised-button
                 [routerLink]="'/problem/' + element?._id">Edit</button>
+        <button mat-raised-button
+                (click)="removeProblem(element?._id)">Remove</button>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

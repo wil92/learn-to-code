@@ -9,10 +9,36 @@
       color: mat-color($primaryPalette);
     }
 
-    form {
+    form, .file-container {
       background-color: mat-color($accentPalette);
 
       padding: 20px;
+
+      textarea {
+        min-height: 80px;
+        color: white;
+      }
+
+      input {
+        color: white;
+      }
+    }
+
+    .test-element {
+
+      mat-icon {
+        cursor: pointer;
+      }
+
+      a {
+        margin: 10px;
+        color: mat-color($primaryPalette);
+        text-decoration: none;
+      }
+    }
+
+    .file-input {
+      margin: 20px 0;
     }
   }
 }

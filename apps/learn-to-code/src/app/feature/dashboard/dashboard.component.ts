@@ -35,6 +35,14 @@ export class DashboardComponent implements OnInit {
   constructor(private problemService: ProblemService) { }
 
   ngOnInit(): void {
+    this.updateListOfProblems();
+  }
+
+  removeProblem(id) {
+    this.problemService.deleteProblem(id).subscribe(() => this.updateListOfProblems());
+  }
+
+  updateListOfProblems() {
     this.problemService.getProblems().subscribe((problems) => {
       this.dataSource = new MatTableDataSource<Problem>(problems);
     });

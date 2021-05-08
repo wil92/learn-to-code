@@ -59,7 +59,7 @@ export class ProblemService {
       {
         solutionId: solution['_id'],
         code,
-        tests: ['001'],
+        tests: tests.map(test => test.name),
         language
       })
       .pipe(timeout(10000))

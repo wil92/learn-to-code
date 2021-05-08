@@ -9,6 +9,7 @@ import {ProblemController} from "./controllers/problem/problem.controller";
 import {SolutionController} from "./controllers/solution/solution.controller";
 import {TestService} from "./services/test/test.service";
 import {SolutionService} from "./services/solution/solution.service";
+import {TestController} from "./controllers/file/test.controller";
 
 const databaseHost = process.env.DB_HOST || 'localhost';
 const databasePort = process.env.DB_PORT || 27018;
@@ -34,7 +35,7 @@ console.log(`database: [mongodb://${databaseHost}:${databasePort}/${databaseName
       }
     ])
   ],
-  controllers: [ProblemController, SolutionController],
+  controllers: [ProblemController, SolutionController, TestController],
   providers: [ProblemService, TestService, SolutionService],
 })
 export class AppModule {
