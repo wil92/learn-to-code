@@ -74,7 +74,7 @@
               "apps/learn-to-code/src/favicon.ico",
               "apps/learn-to-code/src/assets"
             ],
-            "styles": ["apps/learn-to-code/src/styles.scss"],
+            "styles": ["./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css", "apps/learn-to-code/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
