@@ -29,6 +29,8 @@ export class DashboardComponent implements OnInit {
     } as Problem
   ];
 
+  extraOptions = false;
+
   displayedColumns: string[] = ['title', 'description', 'actions'];
   dataSource = new MatTableDataSource<Problem>(this.problems);
 

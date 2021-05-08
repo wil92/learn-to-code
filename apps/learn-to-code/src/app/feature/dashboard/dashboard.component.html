@@ -4,6 +4,9 @@
 
   <div fxFlex="80">
     <button mat-raised-button color="primary" routerLink="/problem">New Problem</button>
+    <div fxFlex="100"></div>
+    <mat-slide-toggle title="extra option"
+                      [(ngModel)]="extraOptions"></mat-slide-toggle>
   </div>
 
   <table mat-table
@@ -27,8 +30,10 @@
                 [routerLink]="'/solve/' + element?._id"
                 color="primary">Solve</button>
         <button mat-raised-button
+                *ngIf="extraOptions"
                 [routerLink]="'/problem/' + element?._id">Edit</button>
         <button mat-raised-button
+                *ngIf="extraOptions"
                 (click)="removeProblem(element?._id)">Remove</button>
     </ng-container>
 
