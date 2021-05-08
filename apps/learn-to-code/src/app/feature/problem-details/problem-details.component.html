@@ -1,1 +1,24 @@
-<p>problem-details works!</p>
+<div class="container"
+     fxLayoutAlign="center start"
+     fxLayout="row wrap">
+
+  <div fxFlex="80">
+    <button mat-raised-button
+            color="secundary"
+            routerLink="/">Back</button>
+  </div>
+
+  <div fxFlex="80" class="problem-container">
+    <h1>{{problem?.title}}</h1>
+    <h2>Description</h2>
+    <p>{{problem?.description}}</p>
+    <h2>Input Description</h2>
+    <p>{{problem?.inputDescription}}</p>
+    <h2>Output Description</h2>
+    <p>{{problem?.outputDescription}}</p>
+    <h2>Input Example</h2>
+    <p>{{problem?.inputExample}}</p>
+    <h2>Output Example</h2>
+    <p>{{problem?.outputExample}}</p>
+  </div>
+</div>

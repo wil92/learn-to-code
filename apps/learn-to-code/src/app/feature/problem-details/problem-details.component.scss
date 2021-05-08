@@ -1,0 +1,20 @@
+@import "apps/learn-to-code/src/variables";
+
+:host {
+  .container {
+    width: 100vw;
+    height: 100vh;
+
+    .problem-container {
+      background-color: mat-color($accentPalette);
+
+      color: #fff;
+
+      padding: 20px;
+
+      h1 {
+        color: mat-color($primaryPalette);
+      }
+    }
+  }
+}

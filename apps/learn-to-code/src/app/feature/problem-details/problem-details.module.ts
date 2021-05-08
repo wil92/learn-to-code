@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProblemDetailsComponent } from './problem-details.component';
 import {ProblemDetailsRoutingModule} from "./problem-details-routing.module";
+import {MaterialModule} from "../../core/material/material.module";
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import {ProblemDetailsRoutingModule} from "./problem-details-routing.module";
   ],
   imports: [
     CommonModule,
-    ProblemDetailsRoutingModule
+    ProblemDetailsRoutingModule,
+    MaterialModule
   ]
 })
 export class ProblemDetailsModule { }
