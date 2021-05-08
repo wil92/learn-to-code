@@ -30,10 +30,15 @@ export class ProblemService {
   }
 
   async update(id: string, problem: ProblemDto): Promise<Problem> {
-    const editedProblem =  new this.problemModel(problem);
-    editedProblem._id = id;
-    editedProblem.id = id;
-    return editedProblem.save();
+    const editedProblem = await this.findOneById(id);
+    editedProblem.title = problem.title;
+    editedProblem.description = problem.description;
+    editedProblem.inputDescription = problem.inputDescription;
+    editedProblem.inputExample = problem.inputExample;
+    editedProblem.outputDescription = problem.outputDescription;
+    editedProblem.outputExample = problem.outputExample;
+    await this.problemModel.updateOne({_id: id}, editedProblem);
+    return editedProblem;
   }
 
 }

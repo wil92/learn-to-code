@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Patch, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 
 import {ProblemService} from "../services/problem/problem.service";
 import {ProblemDto} from "../dtos/problem.dto";
@@ -28,7 +28,7 @@ export class AppController {
     return this.problemService.delete(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   editProblem(@Param() {id}, @Body() problem: ProblemDto) {
     return this.problemService.update(id, problem);
   }

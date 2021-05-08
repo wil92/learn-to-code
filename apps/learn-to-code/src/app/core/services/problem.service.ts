@@ -30,6 +30,6 @@ export class ProblemService {
   }
 
   editProblem(id: string, problem: Problem): Observable<Problem> {
-    return this.http.post<Problem>(`${this.environment.apiUrl}/problems/${id}`, problem);
+    return this.http.put<Problem>(`${this.environment.apiUrl}/problems/${id}`, problem);
   }
 }
