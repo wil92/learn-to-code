@@ -8,7 +8,7 @@ import * as fs from "fs";
 
 import {Injectable} from '@nestjs/common';
 import {InjectModel} from "@nestjs/mongoose";
-import {Model, Types} from "mongoose";
+import {Model} from "mongoose";
 
 import {Test, TestDocument} from "../../schemas/test.schema";
 
@@ -43,6 +43,13 @@ export class TestService {
   async extractExtAndSave(file: Express.Multer.File, problemId: string, filename: string) {
     const fileExt = file.originalname.match(/^(.*?)\.(input|output)$/)[2];
     this.uploadFile(file, `${filename}.${fileExt}`);
+  }
+
+  async downloadTestFile(filename: string): Promise<Buffer> {
+    const filePath = path.join(resourcesPath, filename);
+    return new Promise((resolve, reject) => {
+       fs.readFile(filePath, (err, data) => err ? reject(err) : resolve(data));
+    });
   }
 
   uploadFile(file: Express.Multer.File, testName: string) {

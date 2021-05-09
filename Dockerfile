@@ -21,7 +21,8 @@ COPY . ./
 # build project
 RUN npm run build
 
-# toDo: remove the project code from the container
+# install python
+RUN apk add python3
 
 # copy script to the root of the container
 COPY start-app.sh /start-app.sh

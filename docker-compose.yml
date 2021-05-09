@@ -1,31 +1,36 @@
 version: '3'
 
 services:
-  learn_to_code:
-    build:
-      context: .
-    environment:
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
-    ports:
-      - '127.0.0.1:4040:80'
+  database:
+    image: mongo:4.0.13
     restart: always
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    env_file:
-      - .env
     networks:
-      - blogdb
+      - learn_network
+    volumes:
+      - $DB_DATA_PATH:/data/db
 
   redis:
     image: redis:6-alpine
-    ports:
-      - '127.0.0.1:4041:6379'
     restart: always
     networks:
-      - blogdb
+      - learn_network
+
+  learn_to_code:
+    depends_on:
+      - database
+      - redis
+    build:
+      context: .
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - $RESOURCES_DATA_PATH:/app/resources
+    ports:
+      - '127.0.0.1:4555:80'
+    networks:
+      - learn_network
 
 networks:
-  blogdb:
+  learn_network:
     external: true

@@ -67,8 +67,8 @@
              class="test-element"
              fxLayout="row">
           <mat-icon (click)="deleteTest(test._id)">delete</mat-icon>
-          <a href="#">{{test.name + '.output'}}</a>
-          <a href="#">{{test.name + '.input'}}</a>
+          <a [href]="getFileDownloadLink(test.name + '.output')" download>{{test.name + '.output'}}</a>
+          <a [href]="getFileDownloadLink(test.name + '.input')" download>{{test.name + '.input'}}</a>
         </div>
       </div>
 

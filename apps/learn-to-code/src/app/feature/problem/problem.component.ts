@@ -8,6 +8,7 @@ import {map, mergeMap} from "rxjs/operators";
 import {ProblemService} from "../../core/services/problem.service";
 import {Problem} from "../../core/models/problem.model";
 import {Test} from "../../core/models/test.model";
+import {Environment} from "../../core/injectors/environment";
 
 @Component({
   selector: 'learn-to-code-problem',
@@ -32,7 +33,8 @@ export class ProblemComponent implements OnInit {
 
   @ViewChild("files", {static: false}) filesUpload: ElementRef;
 
-  constructor(private router: Router,
+  constructor(private environment: Environment,
+              private router: Router,
               private activeRouter: ActivatedRoute,
               private problemService: ProblemService) {
   }
@@ -89,6 +91,10 @@ export class ProblemComponent implements OnInit {
 
   deleteTest(id: string) {
     this.problemService.removeTest(id).subscribe(() => this.updateFilesList());
+  }
+
+  getFileDownloadLink(filename: string) {
+    return `${this.environment.apiUrl}/tests/download/${filename}`;
   }
 
   updateFilesList() {
