@@ -20,6 +20,15 @@
     <code>{{problem?.inputExample}}</code>
     <h2>Output Example</h2>
     <code>{{problem?.outputExample}}</code>
+    <h2>Test files</h2>
+    <div>
+      <div *ngFor="let test of tests"
+           class="test-element"
+           fxLayout="row">
+        <a [href]="getFileDownloadLink(test.name + '.output')" download target="_blank">{{test.name + '.output'}}</a>
+        <a [href]="getFileDownloadLink(test.name + '.input')" download target="_blank">{{test.name + '.input'}}</a>
+      </div>
+    </div>
   </div>
 
   <div fxFlex="80"

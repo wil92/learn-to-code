@@ -19,6 +19,14 @@
       code {
         white-space: pre-wrap;
       }
+
+      .test-element {
+        a {
+          margin: 10px;
+          color: mat-color($primaryPalette);
+          text-decoration: none;
+        }
+      }
     }
 
     .status-container {
