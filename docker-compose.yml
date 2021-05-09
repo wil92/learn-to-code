@@ -18,6 +18,14 @@ services:
     networks:
       - blogdb
 
+  redis:
+    image: redis:6-alpine
+    ports:
+      - '127.0.0.1:4041:6379'
+    restart: always
+    networks:
+      - blogdb
+
 networks:
   blogdb:
     external: true

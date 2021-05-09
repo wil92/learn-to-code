@@ -10,24 +10,7 @@ import {ProblemService} from "../../core/services/problem.service";
 })
 export class DashboardComponent implements OnInit {
 
-  problems = [
-    {
-      title: 'problem 1',
-      description: 'somsagd asdf asdf sad',
-      inputDescription: 'asdfasdf',
-      inputExample: 'asdfasdfd',
-      outputDescription: 'asdfasdf',
-      outputExample: 'asdfasdfasdf'
-    } as Problem,
-    {
-      title: 'problem 2',
-      description: 'somsagd asdf asdf sad',
-      inputDescription: 'asdfasdf',
-      inputExample: 'asdfasdfd',
-      outputDescription: 'asdfasdf',
-      outputExample: 'asdfasdfasdf'
-    } as Problem
-  ];
+  problems: Problem[] = [];
 
   extraOptions = false;
 

@@ -2,8 +2,7 @@ import {spawn} from "child_process";
 import * as fs from 'fs';
 import * as path from 'path';
 
-import {Inject, Injectable} from '@nestjs/common';
-import {ClientRedis} from "@nestjs/microservices";
+import {Injectable} from '@nestjs/common';
 
 const fsp = fs.promises;
 
@@ -11,9 +10,6 @@ const resourcesPath = process.env.RESOURCES_PATH;
 
 @Injectable()
 export class AppService {
-
-  constructor(@Inject('REDIS_SERVICE') private readonly redisClient: ClientRedis) {
-  }
 
   async evalCode(solutionId: string, code: string, tests: string[], language: string) {
     const codePath = this.createCodeFile(code);

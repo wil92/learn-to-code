@@ -1,4 +1,6 @@
 import {Express} from "express";
+// noinspection ES6UnusedImports
+import { Multer } from 'multer';
 import * as mongoose from 'mongoose';
 import * as path from "path";
 import * as fs from "fs";
