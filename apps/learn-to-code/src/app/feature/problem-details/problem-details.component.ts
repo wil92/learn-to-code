@@ -17,7 +17,7 @@ export class ProblemDetailsComponent implements OnInit {
   problem: Problem;
   tests: Test[] = [];
 
-  code = 'x = int(input())\nfor i in range(x):\n    a, b = map(int, input().split())\n    print(a + b);';
+  code = '';
 
   status = '';
 
