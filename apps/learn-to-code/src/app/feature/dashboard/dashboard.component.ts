@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
 
   extraOptions = false;
 
-  displayedColumns: string[] = ['title', 'description', 'actions'];
+  displayedColumns: string[] = ['title', 'actions'];
   dataSource = new MatTableDataSource<Problem>(this.problems);
 
   constructor(private problemService: ProblemService) { }
