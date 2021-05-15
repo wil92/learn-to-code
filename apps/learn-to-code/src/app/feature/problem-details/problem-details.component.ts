@@ -5,6 +5,7 @@ import {ProblemService} from "../../core/services/problem.service";
 import {Problem} from "../../core/models/problem.model";
 import {Test} from "../../core/models/test.model";
 import {Environment} from "../../core/injectors/environment";
+import {AuthService} from "../../core/services/auth.service";
 
 
 @Component({
@@ -23,6 +24,7 @@ export class ProblemDetailsComponent implements OnInit {
 
   constructor(private environment: Environment,
               private router: Router,
+              public authService: AuthService,
               private activeRouter: ActivatedRoute,
               private problemService: ProblemService) { }
 

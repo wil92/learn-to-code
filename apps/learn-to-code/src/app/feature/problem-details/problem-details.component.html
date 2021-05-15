@@ -34,7 +34,7 @@
   <div fxFlex="80"
        fxLayout="row"
        fxLayoutAlign="center center"
-       *ngIf="status"
+       *ngIf="authService.isLogin() && status"
        class="status-container">
     <mat-icon *ngIf="status === 'LOADING'">refresh</mat-icon>
     <mat-icon class="mat-primary" *ngIf="status === 'ACCEPT'">done</mat-icon>
@@ -43,6 +43,7 @@
     {{status}}
   </div>
   <div fxFlex="80"
+       *ngIf="authService.isLogin()"
        class="code-container"
        fxLayout="column">
     <div ace-editor
@@ -52,6 +53,7 @@
   </div>
 
   <button mat-fab
+          *ngIf="authService.isLogin()"
           class="run-code-button"
           color="primary"
           (click)="sendSolution()">run</button>
