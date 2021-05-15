@@ -1,27 +1,32 @@
-import {Injectable} from '@nestjs/common';
-import {User} from "../../schemas/user.schema";
+import {BadRequestException, Injectable} from '@nestjs/common';
+import {User, UserDocument} from "../../schemas/user.schema";
+import {InjectModel} from "@nestjs/mongoose";
+
+import {Model} from "mongoose";
 
 @Injectable()
 export class UserService {
-  private readonly users = [
-    {
-      userId: 1,
-      username: 'john',
-      password: 'e376badf38d12a49f81350d60d319a1a54ea789f73b3f0beba11ef1caa2d467f',
-      salt: '8fe0e1068f',
-      role: 'admin'
-    },
-    {
-      userId: 2,
-      username: 'maria',
-      password: 'guess',
-      salt: '65d4fg654d',
-      role: 'public'
-    },
-  ];
-
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find(user => user.username === username);
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {
   }
 
+  async registerUser({username, email, passwordHash, salt}): Promise<User> {
+    const exist = await this.findOne(username);
+    if (exist) {
+      throw new BadRequestException();
+    }
+    const newUser = new this.userModel({
+      username,
+      email,
+      password: passwordHash,
+      salt,
+      role: 'auth',
+      active: true
+    });
+    return newUser.save();
+  }
+
+  async findOne(username: string): Promise<User | undefined> {
+    const users = await this.userModel.aggregate([{$match: {username}}]).exec();
+    return users.length > 0 ? users[0] : null;
+  }
 }

@@ -22,6 +22,12 @@ export class AuthService {
     return null;
   }
 
+  async registerLocal(username: string, password: string, email: string) {
+    const salt = this.generateSalt();
+    const passwordHash = this.passwordHash(password, salt);
+    await this.userService.registerUser({username, email, salt, passwordHash})
+  }
+
   passwordHash(password: string, salt: string): string {
     const alg = crypto.createHmac('sha256', salt);
     alg.update(password);

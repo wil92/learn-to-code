@@ -16,6 +16,12 @@ export class User {
 
   @Prop()
   role: string;
+
+  @Prop()
+  email: string;
+
+  @Prop()
+  active: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
