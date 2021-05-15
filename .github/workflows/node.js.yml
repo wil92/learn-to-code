@@ -45,7 +45,7 @@ jobs:
   test:
 
     on: [push, pull_request]
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
