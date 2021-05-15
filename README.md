@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/wil92/learn-to-code.svg?branch=master)](https://travis-ci.org/wil92/learn-to-code)
 
 
 # LearnToCode
