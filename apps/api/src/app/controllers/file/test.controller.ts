@@ -16,13 +16,14 @@ import {FilesInterceptor} from "@nestjs/platform-express";
 
 import {TestService} from "../../services/test/test.service";
 import {JwtGuard} from "../../guards/jwt/jwt.guard";
+import {RolesGuard} from "../../guards/roles/roles.guard";
 
 @Controller('tests')
 export class TestController {
   constructor(private readonly testService: TestService) {
   }
 
-  @UseGuards(JwtGuard)
+  @UseGuards(JwtGuard, new RolesGuard('admin'))
   @Post('upload/:id')
   @UseInterceptors(FilesInterceptor('files'))
   uploadFiles(@Param('id') id, @UploadedFiles() files: Array<Express.Multer.File>) {
@@ -34,7 +35,7 @@ export class TestController {
     return this.testService.findTestsByProblemId(id);
   }
 
-  @UseGuards(JwtGuard)
+  @UseGuards(JwtGuard, new RolesGuard('admin'))
   @Delete(':id')
   deleteTest(@Param('id') id) {
     return this.testService.removeTest(id);

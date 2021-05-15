@@ -9,14 +9,14 @@ export class UserService {
       username: 'john',
       password: 'e376badf38d12a49f81350d60d319a1a54ea789f73b3f0beba11ef1caa2d467f',
       salt: '8fe0e1068f',
-      role: ''
+      role: 'admin'
     },
     {
       userId: 2,
       username: 'maria',
       password: 'guess',
       salt: '65d4fg654d',
-      role: ''
+      role: 'public'
     },
   ];
 

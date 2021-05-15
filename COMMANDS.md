@@ -9,5 +9,5 @@
 ## list of problems
 
 ```bash
-curl http://localhost:3333/api/problems -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiam9obiIsInJvbGUiOiIiLCJpYXQiOjE2MjExMDAwOTEsImV4cCI6MTYyMTE4NjQ5MX0.G5WbdUrJ0RNg3Et6gVWhgST1GLSwoUWeacxTLLFQpPE"
+curl http://localhost:3333/api/problems -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiam9obiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYyMTEwMzc3OCwiZXhwIjoxNjIxMTkwMTc4fQ.KK4NxxQ6vSzg8ROjzXsEiLft77QO7eZ5KAbgKLvsKeg"
 ```
