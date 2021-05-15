@@ -3,13 +3,19 @@
      fxLayoutAlign="center start">
 
   <div fxFlex="80">
-    <button *ngIf="extraOptions"
+    <button *ngIf="authService.isAdmin()"
             mat-raised-button
             color="primary"
             routerLink="/problem">New Problem</button>
+    <button *ngIf="!authService.isLogin()"
+            mat-raised-button
+            color="primary"
+            routerLink="/login">login</button>
+    <button *ngIf="authService.isLogin()"
+            mat-raised-button
+            (click)="logout()"
+            color="primary">LogOut</button>
     <div fxFlex="100"></div>
-    <mat-slide-toggle title="extra option"
-                      [(ngModel)]="extraOptions"></mat-slide-toggle>
   </div>
 
   <table mat-table
@@ -28,10 +34,10 @@
                 [routerLink]="'/solve/' + element?._id"
                 color="primary">Solve</button>
         <button mat-raised-button
-                *ngIf="extraOptions"
+                *ngIf="authService.isAdmin()"
                 [routerLink]="'/problem/' + element?._id">Edit</button>
         <button mat-raised-button
-                *ngIf="extraOptions"
+                *ngIf="authService.isAdmin()"
                 (click)="removeProblem(element?._id)">Remove</button>
     </ng-container>
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Problem} from "../../core/models/problem.model";
 import {MatTableDataSource} from "@angular/material/table";
 import {ProblemService} from "../../core/services/problem.service";
+import {AuthService} from "../../core/services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'learn-to-code-dashboard',
@@ -12,12 +14,14 @@ export class DashboardComponent implements OnInit {
 
   problems: Problem[] = [];
 
-  extraOptions = false;
-
   displayedColumns: string[] = ['title', 'actions'];
   dataSource = new MatTableDataSource<Problem>(this.problems);
 
-  constructor(private problemService: ProblemService) { }
+  constructor(
+    private problemService: ProblemService,
+    public authService: AuthService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.updateListOfProblems();
@@ -31,5 +35,9 @@ export class DashboardComponent implements OnInit {
     this.problemService.getProblems().subscribe((problems) => {
       this.dataSource = new MatTableDataSource<Problem>(problems);
     });
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

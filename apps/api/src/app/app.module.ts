@@ -3,7 +3,6 @@ import {MongooseModule} from "@nestjs/mongoose";
 import {SwaggerModule} from "@nestjs/swagger";
 import {ClientsModule, Transport} from "@nestjs/microservices";
 import {JwtModule} from "@nestjs/jwt";
-import {APP_GUARD} from "@nestjs/core";
 
 import {DatabaseModule} from "./schemas/database.module";
 import {ProblemService} from "./services/problem/problem.service";
@@ -18,7 +17,6 @@ import {LocalStrategy} from "./services/auth/local.strategy";
 import {AuthController} from "./controllers/auth/auth.controller";
 import {environment} from "../environments/environment";
 import {JwtStrategy} from "./services/auth/jwt.strategy";
-import {RolesGuard} from "./guards/roles/roles.guard";
 
 const databaseHost = process.env.DB_HOST || 'localhost';
 const databasePort = process.env.DB_PORT || 27018;
