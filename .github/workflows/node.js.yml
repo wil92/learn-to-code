@@ -67,7 +67,7 @@ jobs:
       - run: npm test
       - run: codecov
         env:
-          - CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 
 # DEPLOY PROJECT
