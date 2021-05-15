@@ -84,10 +84,10 @@ jobs:
 
     steps:
       - name: Cache project build
-          uses: actions/cache@v2
-          with:
-            path: 'dist'
-            key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+        uses: actions/cache@v2
+        with:
+          path: 'dist'
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
 
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
