@@ -81,32 +81,21 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
       - uses: actions/checkout@v2
 
-      - name: Cache project build
-        uses: actions/cache@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v1
         with:
-          path: 'dist'
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '10.x'
 
       # pipeline actions
-      - run: npm run version
       - name: Deploy to Staging server
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO"
-          SOURCE: "dist/"
+          SOURCE: ""
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
