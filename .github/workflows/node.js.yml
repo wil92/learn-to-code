@@ -59,9 +59,15 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Install codecov dependency
+        run: npm install -g codecov
+
       # pipeline actions
       - run: npm run lint
       - run: npm test
+      - run: codecov
+        env:
+          - CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 
 # DEPLOY PROJECT

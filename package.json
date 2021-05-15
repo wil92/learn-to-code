@@ -12,7 +12,7 @@
     "start:eval": "ng serve eval",
     "build": "ng build --prod && ng build api && ng build eval",
     "build:eval": "ng build eval",
-    "test": "ng test",
+    "test": "jest --ci --coverage",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
     "affected:apps": "nx affected:apps",
