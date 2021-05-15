@@ -89,6 +89,18 @@ jobs:
         with:
           node-version: '12.x'
 
+      - name: Create env variables file
+        run: ./create-environments.sh
+        env:
+          DB_HOST: database
+          DB_PORT: 27017
+          DB_NAME: learn_to_code_docker
+          REDIS_HOST: redis
+          REDIS_PORT: 6379
+          RESOURCES_PATH: ./resources
+          DB_DATA_PATH: /home/guille/learntocode/db-data
+          RESOURCES_DATA_PATH: /home/guille/learntocode/resources-data
+
       # pipeline actions
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@v2.1.5
@@ -102,15 +114,6 @@ jobs:
 
       - name: Deploy project in docker
         uses: garygrossgarten/github-action-ssh@release
-        env:
-          DB_HOST: database
-          DB_PORT: 27017
-          DB_NAME: learn_to_code_docker
-          REDIS_HOST: redis
-          REDIS_PORT: 6379
-          RESOURCES_PATH: ./resources
-          DB_DATA_PATH: /home/guille/learntocode/db-data
-          RESOURCES_DATA_PATH: /home/guille/learntocode/resources-data
         with:
           command: cd ${{ secrets.REMOTE_TARGET }} && ./deploy.sh
           host: ${{ secrets.REMOTE_HOST }}
