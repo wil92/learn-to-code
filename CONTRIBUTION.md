@@ -6,6 +6,10 @@ This project was generated using [Nx](https://nx.dev).
 
 🔎 **Powerful, Extensible Dev Tools**
 
+## Helper commands
+
+[commands](./COMMANDS.md)
+
 ## Quick Start & Documentation
 
 [Nx Documentation](https://nx.dev/angular)

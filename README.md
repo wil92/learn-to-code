@@ -28,20 +28,19 @@ services:
   redis:
     image: redis:6-alpine
     restart: always
-    port:
+    ports:
       - '0.0.0.0:6379:6379'
 
   database:
     image: mongo:4.0.13
     restart: always
-    port:
+    ports:
       - '0.0.0.0:27017:27017'
 ```
 
 after this execute next commands:
 
 ```bash
-docker network create learn_network
 docker-compose -f docker-compose.local.yml up -d
 ```
 

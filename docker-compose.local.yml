@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:6-alpine
+    restart: always
+    ports:
+      - '0.0.0.0:6379:6379'
+
+  database:
+    image: mongo:4.0.13
+    restart: always
+    ports:
+      - '0.0.0.0:27017:27017'
