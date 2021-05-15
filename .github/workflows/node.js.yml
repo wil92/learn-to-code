@@ -44,6 +44,7 @@ jobs:
 # RUN TESTS
   test:
 
+    needs: [build]
     runs-on: ubuntu-latest
 
     strategy:
@@ -74,7 +75,7 @@ jobs:
 # DEPLOY PROJECT
   deploy:
 
-    needs: [build]
+    needs: [test]
 
     on:
       push:
