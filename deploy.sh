@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'here application'
+echo 'here application 2'
 
 #DB_HOST=database
 #DB_PORT=27017
