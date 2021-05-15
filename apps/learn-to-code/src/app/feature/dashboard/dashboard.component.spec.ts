@@ -1,6 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {NO_ERRORS_SCHEMA} from "@angular/core";
+
+import {of} from 'rxjs';
 
 import { DashboardComponent } from './dashboard.component';
+import {ProblemService} from "../../core/services/problem.service";
+
+class ProblemServiceStub {
+  getProblems = () => of([]);
+}
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -8,7 +17,10 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      imports: [HttpClientTestingModule],
+      declarations: [ DashboardComponent ],
+      providers: [{provide: ProblemService, useClass: ProblemServiceStub}],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });

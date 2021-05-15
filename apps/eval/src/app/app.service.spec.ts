@@ -12,4 +12,8 @@ describe('AppService', () => {
 
     service = app.get<AppService>(AppService);
   });
+
+  it('should create', () => {
+    expect(service).toBeTruthy();
+  });
 });

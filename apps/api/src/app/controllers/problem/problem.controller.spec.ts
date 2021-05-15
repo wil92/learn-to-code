@@ -1,6 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { ProblemController } from './problem.controller';
+import {ProblemService} from "../../services/problem/problem.service";
+
+class ProblemServiceStub {
+}
 
 describe('AppController', () => {
   let app: TestingModule;
@@ -8,14 +12,11 @@ describe('AppController', () => {
   beforeAll(async () => {
     app = await Test.createTestingModule({
       controllers: [ProblemController],
-      providers: [],
+      providers: [{provide: ProblemService, useClass: ProblemServiceStub}],
     }).compile();
   });
 
-  describe('getData', () => {
-    it('should return "Welcome to api!"', () => {
-      const appController = app.get<ProblemController>(ProblemController);
-      expect(appController.getData()).toEqual({ message: 'Welcome to api!' });
-    });
+  it('should create', () => {
+    expect(app).toBeTruthy();
   });
 });

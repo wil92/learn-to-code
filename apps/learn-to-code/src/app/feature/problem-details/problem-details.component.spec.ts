@@ -1,6 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from "@angular/core";
+import {RouterTestingModule} from "@angular/router/testing";
+
+import {of} from "rxjs";
 
 import { ProblemDetailsComponent } from './problem-details.component';
+import {Environment} from "../../core/injectors/environment";
+import {ProblemService} from "../../core/services/problem.service";
+
+class ProblemServiceStub {
+  getProblemById = () => of({});
+}
 
 describe('ProblemDetailsComponent', () => {
   let component: ProblemDetailsComponent;
@@ -8,7 +18,13 @@ describe('ProblemDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProblemDetailsComponent ]
+      imports: [RouterTestingModule],
+      declarations: [ ProblemDetailsComponent ],
+      providers: [
+        {provide: Environment, useValue: {}},
+        {provide: ProblemService, useClass: ProblemServiceStub}
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });
