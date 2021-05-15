@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/wil92/learn-to-code.svg?branch=master)](https://travis-ci.org/wil92/learn-to-code)
-
+[![actions](https://github.com/wil92/learn-to-code/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/wil92/learn-to-code)
+[![codecov](https://codecov.io/gh/wil92/learn-to-code/branch/master/graph/badge.svg?token=WMJCJVXZIB)](https://codecov.io/gh/wil92/learn-to-code)
 
 # LearnToCode
 
