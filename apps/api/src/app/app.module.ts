@@ -2,6 +2,7 @@ import {Module} from '@nestjs/common';
 import {MongooseModule} from "@nestjs/mongoose";
 import {SwaggerModule} from "@nestjs/swagger";
 import {ClientsModule, Transport} from "@nestjs/microservices";
+import {JwtModule} from "@nestjs/jwt";
 
 import {DatabaseModule} from "./schemas/database.module";
 import {ProblemService} from "./services/problem/problem.service";
@@ -15,7 +16,7 @@ import {UserService} from "./services/user/user.service";
 import {LocalStrategy} from "./services/auth/local.strategy";
 import {AuthController} from "./controllers/auth/auth.controller";
 import {environment} from "../environments/environment";
-import {JwtModule} from "@nestjs/jwt";
+import {JwtStrategy} from "./services/auth/jwt.strategy";
 
 const databaseHost = process.env.DB_HOST || 'localhost';
 const databasePort = process.env.DB_PORT || 27018;
@@ -60,7 +61,11 @@ export abstract class Environment {
     AuthService,
     UserService,
     LocalStrategy,
-    {provide: 'ENVIRONMENT', useValue: environment}
+    JwtStrategy,
+    {
+      provide: 'ENVIRONMENT',
+      useValue: {...environment, jwtSecret: jwtSecret || environment.jwtSecret} as Environment
+    }
   ],
 })
 export class AppModule {

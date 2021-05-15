@@ -1,8 +1,9 @@
-import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, UseGuards} from '@nestjs/common';
 
 import {ProblemService} from "../../services/problem/problem.service";
 import {ProblemDto} from "../../dtos/problem.dto";
 import {SolveDto} from "../../dtos/solve.dto";
+import {JwtGuard} from "../../guards/jwt/jwt.guard";
 
 @Controller('problems')
 export class ProblemController {
@@ -18,22 +19,26 @@ export class ProblemController {
     return this.problemService.findOneById(id);
   }
 
+  @UseGuards(JwtGuard)
   @Post()
   createProblem(@Body() problem: ProblemDto) {
     console.log('create', problem)
     return this.problemService.create(problem)
   }
 
+  @UseGuards(JwtGuard)
   @Delete(':id')
   deleteProblem(@Param() {id}) {
     return this.problemService.delete(id);
   }
 
+  @UseGuards(JwtGuard)
   @Put(':id')
   editProblem(@Param() {id}, @Body() problem: ProblemDto) {
     return this.problemService.update(id, problem);
   }
 
+  @UseGuards(JwtGuard)
   @Post('solve/:id')
   solve(@Param() {id}, @Body() {code, language}: SolveDto) {
     return this.problemService.solveProblem(id, code, language);
