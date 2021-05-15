@@ -3,104 +3,90 @@
 
 # LearnToCode
 
-This project was generated using [Nx](https://nx.dev).
+Simple online judge make with nodejs.
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## Install dependencies
 
-🔎 **Powerful, Extensible Dev Tools**
+```bash
+npm install
+```
 
-## Quick Start & Documentation
+## Start project (local)
 
-[Nx Documentation](https://nx.dev/angular)
+### Preconditions
 
-[10-minute video showing all Nx features](https://nx.dev/angular/getting-started/what-is-nx)
+**Start redis and database**
 
-[Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
+The API and the eval microservice project, need redis to communicate between them. The easier way to do this is by 
+starting a docker with redis or use the redis configuration in the *docker-compose.yml* file. Create a 
+*docker-compose.local.yml* and copy the next code:
 
-## Adding capabilities to your workspace
+```yml
+version: '3'
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+services:
+  redis:
+    image: redis:6-alpine
+    restart: always
+    port:
+      - '0.0.0.0:6379:6379'
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+  database:
+    image: mongo:4.0.13
+    restart: always
+    port:
+      - '0.0.0.0:27017:27017'
+```
 
-Below are our core plugins:
+after this execute next commands:
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+```bash
+docker network create learn_network
+docker-compose -f docker-compose.local.yml up -d
+```
 
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
+**Environment variables**
 
-## Generate an application
+Create the *.env* file in the root of the project:
 
-Run `ng g @nrwl/angular:app my-app` to generate an application.
+```
+DB_HOST=localhost
+DB_PORT=27017
+DB_NAME=learn_to_code_dev
+REDIS_HOST=localhost
+REDIS_PORT=6379
+RESOURCES_PATH=./resources
+```
 
-> You can use any of the plugins above to generate applications as well.
+### Start application
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+**Start API**
+```bash
+npm run start:api
+```
 
-## Generate a library
+**Start eval microservice**
+```bash
+npm run start:eval
+```
 
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
+**Start frontend**
+```bash
+npm start
+```
 
-> You can also use any of the plugins above to generate libraries as well.
+## Run tests
 
-Libraries are shareable across libraries and applications. They can be imported from `@learn-to-code/mylib`.
+```bash
+npm test
+```
 
-## Development server
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Please make sure to update tests as appropriate.
 
-## Code scaffolding
+See file [CONTRIBUTION.md](./CONTRIBUTION.md)
 
-Run `ng g component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
-
-
-
-
-
-
-## ☁ Nx Cloud
-
-### Computation Memoization in the Cloud
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
