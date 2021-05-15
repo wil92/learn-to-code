@@ -29,6 +29,7 @@
       </mat-form-field>
       <div fxFlex="100"></div>
       <button mat-raised-button
+              (click)="loginAction()"
               color="primary">
         LogIn
       </button>
@@ -65,6 +66,7 @@
                placeholder="Title">
       </mat-form-field>
       <button mat-raised-button
+              (click)="registerAction()"
               color="primary" >
         Register
       </button>

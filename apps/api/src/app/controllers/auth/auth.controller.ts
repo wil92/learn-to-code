@@ -18,7 +18,7 @@ export class AuthController {
     };
   }
 
-  @Post('register/local')
+  @Post('register')
   async registerLocal(@Body() {username, email, password}) {
     if (!username || !email || !password) {
       throw new BadRequestException();

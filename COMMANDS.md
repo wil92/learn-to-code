@@ -9,7 +9,7 @@ curl -X POST http://localhost:3333/api/auth/login -d '{"username": "john", "pass
 ## register command
 
 ```bash
-curl -X POST http://localhost:3333/api/auth/register/local -d '{"username": "john", "password": "changeme", "email": "tes@some.com"} ' -H "Content-Type: application/json"
+curl -X POST http://localhost:3333/api/auth/register -d '{"username": "john", "password": "changeme", "email": "tes@some.com"} ' -H "Content-Type: application/json"
 ```
 
 ## list of problems
