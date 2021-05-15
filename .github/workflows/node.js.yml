@@ -85,7 +85,7 @@ jobs:
         env:
           DB_HOST: database
           DB_PORT: 27017
-          DB_NAME: learn_to_code_docker
+          DB_NAME: learn_to_code_prod
           REDIS_HOST: redis
           REDIS_PORT: 6379
           RESOURCES_PATH: ./resources
