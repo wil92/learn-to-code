@@ -1,0 +1,73 @@
+<div class="container"
+     fxLayoutAlign="center center"
+     fxLayout="row">
+  <div fxLayout="row wrap"
+       class="form-container"
+       fxFlex.lg="50"
+       fxFlex.md="80"
+       fxFlex.sm="90"
+       fxFlex.xs="100"
+       fxFlex="50">
+    <form [formGroup]="login"
+          fxFlex="50"
+          fxFlex.sm="100"
+          fxFlex.xs="100"
+          fxLayout="column">
+      <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input matInput
+               formControlName="username"
+               placeholder="Title">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput
+               autocomplete="off"
+               formControlName="password"
+               type="password"
+               placeholder="Title">
+      </mat-form-field>
+      <div fxFlex="100"></div>
+      <button mat-raised-button
+              color="primary">
+        LogIn
+      </button>
+    </form>
+    <form [formGroup]="register"
+          fxFlex.sm="100"
+          fxFlex.xs="100"
+          fxFlex="50"
+          fxLayout="column">
+      <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input matInput
+               formControlName="username"
+               placeholder="Title">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput
+               formControlName="email"
+               placeholder="Title">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput
+               formControlName="password"
+               type="password"
+               placeholder="Title">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Repeat password</mat-label>
+        <input matInput
+               formControlName="password2"
+               type="password"
+               placeholder="Title">
+      </mat-form-field>
+      <button mat-raised-button
+              color="primary" >
+        Register
+      </button>
+    </form>
+  </div>
+</div>

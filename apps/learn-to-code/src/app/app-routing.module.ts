@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'solve/:id',
     loadChildren: () => import('./feature/problem-details/problem-details.module').then(m => m.ProblemDetailsModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./feature/auth/auth.module').then(m => m.AuthModule)
   }
 ];
 

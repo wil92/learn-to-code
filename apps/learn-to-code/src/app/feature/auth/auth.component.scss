@@ -1,0 +1,35 @@
+@import "apps/learn-to-code/src/variables";
+
+:host {
+  .container {
+    width: 100vw;
+    height: 100vh;
+
+    .form-container {
+      background-color: mat-color($accentPalette);
+
+      form {
+        padding: 20px;
+
+        h1 {
+          color: mat-color($primaryPalette);
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active
+        {
+          background: transparent;
+          color: #fff !important;
+          -webkit-text-fill-color: #fff !important;
+          -webkit-box-shadow: 0 0 0 30px mat-color($accentPalette) inset !important;
+        }
+
+        input {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
