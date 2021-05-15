@@ -89,7 +89,7 @@ jobs:
         with:
           node-version: '10.x'
 
-      - run: cache {{ secrets.REMOTE_HOST }}
+      - run: echo {{ secrets.REMOTE_HOST }}
 
       # pipeline actions
       - name: Deploy to Staging server
