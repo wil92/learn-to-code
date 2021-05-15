@@ -77,11 +77,7 @@ jobs:
 
     needs: [test]
 
-    on:
-      push:
-        branches: [ master ]
-      pull_request:
-        branches: [ master ]
+    if: ${{ github.ref == 'master' }}
 
     runs-on: ubuntu-latest
 
