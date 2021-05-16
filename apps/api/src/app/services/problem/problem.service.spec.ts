@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import {ClientRedis} from "@nestjs/microservices";
 import {getModelToken} from "@nestjs/mongoose";
 
 import { ProblemService } from './problem.service';

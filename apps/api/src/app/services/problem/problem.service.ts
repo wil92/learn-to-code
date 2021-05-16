@@ -2,7 +2,7 @@ import {Model} from "mongoose";
 import {Inject, Injectable} from '@nestjs/common';
 import {InjectModel} from "@nestjs/mongoose";
 import {ClientRedis} from "@nestjs/microservices";
-import {tap, timeout} from "rxjs/operators";
+import {timeout} from "rxjs/operators";
 
 import {Problem, ProblemDocument} from "../../schemas/problem.schema";
 import {ProblemDto} from "../../dtos/problem.dto";
