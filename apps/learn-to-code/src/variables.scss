@@ -2,3 +2,8 @@
 
 $primaryPalette: mat-palette($mat-pink, 700);
 $accentPalette:  mat-palette($mat-gray, 800);
+
+
+$loadingStatus: mat-palette($mat-light-blue, 500);;
+$acceptStatus: mat-palette($mat-light-green, 500);;
+$failStatus: mat-palette($mat-deep-orange, 500);

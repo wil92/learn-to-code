@@ -5,14 +5,16 @@ import {ProblemDto} from "../../dtos/problem.dto";
 import {SolveDto} from "../../dtos/solve.dto";
 import {JwtGuard} from "../../guards/jwt/jwt.guard";
 import {RolesGuard} from "../../guards/roles/roles.guard";
+import {JwtAllowGuard} from "../../guards/jwt/jwt-allow.guard";
 
 @Controller('problems')
 export class ProblemController {
   constructor(private readonly problemService: ProblemService) {}
 
+  @UseGuards(JwtAllowGuard)
   @Get()
-  getData() {
-    return this.problemService.findAll();
+  getData(@Request() req) {
+    return this.problemService.findAll(req.user);
   }
 
   @Get(':id')

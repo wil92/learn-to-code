@@ -6,4 +6,10 @@ export interface Problem {
   inputExample: string;
   outputDescription: string;
   outputExample: string;
+  solution: Solution;
+}
+
+export interface Solution {
+  status: string;
+  language: string;
 }

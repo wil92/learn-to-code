@@ -1,9 +1,9 @@
 import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
-import { Document } from 'mongoose';
+import {Document} from 'mongoose';
 
 export type ProblemDocument = Problem & Document;
 
-@Schema()
+@Schema({timestamps: true})
 export class Problem {
   @Prop()
   title: string;

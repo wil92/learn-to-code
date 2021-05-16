@@ -1,6 +1,36 @@
+@import "apps/learn-to-code/src/variables";
+
 :host {
   .container {
     height: 100vh;
     width: 100%;
+  }
+
+  .loading {
+    color: mat-color($loadingStatus);
+  }
+
+  .accept {
+    color: mat-color($acceptStatus);
+  }
+
+  .fail {
+    color: mat-color($failStatus);
+  }
+
+  .animate-loading {
+    animation-name: loading-frames;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes loading-frames {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 }

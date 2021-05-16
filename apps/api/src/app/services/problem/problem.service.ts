@@ -7,8 +7,10 @@ import {timeout} from "rxjs/operators";
 import {Problem, ProblemDocument} from "../../schemas/problem.schema";
 import {ProblemDto} from "../../dtos/problem.dto";
 import {TestService} from "../test/test.service";
-import {SolutionService} from "../solution/solution.service";
+import {ProblemStatus, SolutionService} from "../solution/solution.service";
 import {UserService} from "../user/user.service";
+import {User} from "../../schemas/user.schema";
+import {Solution} from "../../schemas/solution.schema";
 
 @Injectable()
 export class ProblemService {
@@ -19,8 +21,28 @@ export class ProblemService {
               @Inject('REDIS_SERVICE') private readonly redisClient: ClientRedis) {
   }
 
-  async findAll(): Promise<Problem[]> {
-    return this.problemModel.find().exec();
+  async findAll(user: User): Promise<Problem[]> {
+    const problems = await this.problemModel.find().exec();
+    const resultProblems = [];
+    if (user) {
+      for (let problem of problems) {
+        const solutions = await this.solutionService.getSolutionByUserAndProblem(problem['_id'], user['_id']);
+        resultProblems.push({...problem.toObject(), solution: this.relevantSolution(solutions)});
+      }
+    }
+    return resultProblems;
+  }
+
+  relevantSolution(solutions: Solution[]) {
+    if (solutions.length === 0) {
+      return null;
+    }
+    for (const solution of solutions) {
+      if (solution.status === ProblemStatus.ACCEPT) {
+        return solution;
+      }
+    }
+    return solutions[solutions.length - 1];
   }
 
   async findOneById(id: string): Promise<Problem> {

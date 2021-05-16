@@ -7,7 +7,7 @@ import {User} from "./user.schema";
 
 export type SolutionDocument = Solution & Document;
 
-@Schema()
+@Schema({timestamps: true})
 export class Solution {
   @Prop()
   code: string;
