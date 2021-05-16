@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Post, Put, UseGuards} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards} from '@nestjs/common';
 
 import {ProblemService} from "../../services/problem/problem.service";
 import {ProblemDto} from "../../dtos/problem.dto";
@@ -41,7 +41,7 @@ export class ProblemController {
 
   @UseGuards(JwtGuard)
   @Post('solve/:id')
-  solve(@Param() {id}, @Body() {code, language}: SolveDto) {
-    return this.problemService.solveProblem(id, code, language);
+  solve(@Param() {id}, @Body() {code, language}: SolveDto, @Request() req) {
+    return this.problemService.solveProblem(id, code, language, req.user.username);
   }
 }

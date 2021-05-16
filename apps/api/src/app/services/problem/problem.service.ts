@@ -8,12 +8,14 @@ import {Problem, ProblemDocument} from "../../schemas/problem.schema";
 import {ProblemDto} from "../../dtos/problem.dto";
 import {TestService} from "../test/test.service";
 import {SolutionService} from "../solution/solution.service";
+import {UserService} from "../user/user.service";
 
 @Injectable()
 export class ProblemService {
   constructor(@InjectModel(Problem.name) private problemModel: Model<ProblemDocument>,
               private readonly testService: TestService,
               private readonly solutionService: SolutionService,
+              private readonly userService: UserService,
               @Inject('REDIS_SERVICE') private readonly redisClient: ClientRedis) {
   }
 
@@ -48,11 +50,12 @@ export class ProblemService {
     return editedProblem;
   }
 
-  async solveProblem(id: string, code: string, language: string): Promise<string> {
+  async solveProblem(id: string, code: string, language: string, username: string): Promise<string> {
     const problem = await this.findOneById(id);
 
     const tests = await this.testService.findTestsByProblemId(id);
-    const solution = await this.solutionService.createSolution(code, 'python3', problem['_id']);
+    const currentUser = await this.userService.findOne(username);
+    const solution = await this.solutionService.createSolution(code, 'python3', problem['_id'], currentUser['_id']);
 
     // send new solution to redis
     const res = await this.redisClient.send('EVAL_SOLUTION',

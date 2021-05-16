@@ -9,8 +9,8 @@ export class SolutionService {
   constructor(@InjectModel(Solution.name) private solutionModel: Model<SolutionDocument>) {
   }
 
-  async createSolution(code: string, language: string, problem: string): Promise<Solution> {
-    const solution = new this.solutionModel({code, language, problem, status: 'RUNNING'});
+  async createSolution(code: string, language: string, problem: string, user: string): Promise<Solution> {
+    const solution = new this.solutionModel({code, language, problem, status: 'RUNNING', user});
     return solution.save();
   }
 
