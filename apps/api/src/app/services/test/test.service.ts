@@ -23,7 +23,7 @@ export class TestService {
     const filesGroup = new Map<string, Array<Express.Multer.File>>();
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      if (file.originalname.endsWith('.output') || file.originalname.endsWith('.input')) {
+      if (file && (file.originalname.endsWith('.output') || file.originalname.endsWith('.input'))) {
         const fileName = file.originalname.match(/^(.*?)\.(input|output)$/)[1];
         if (!filesGroup.has(fileName)) {
           filesGroup.set(fileName, []);
