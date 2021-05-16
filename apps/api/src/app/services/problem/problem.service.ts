@@ -23,14 +23,15 @@ export class ProblemService {
 
   async findAll(user: User): Promise<Problem[]> {
     const problems = await this.problemModel.find().exec();
-    const resultProblems = [];
     if (user) {
+      const resultProblems = [];
       for (let problem of problems) {
         const solutions = await this.solutionService.getSolutionByUserAndProblem(problem['_id'], user['_id']);
         resultProblems.push({...problem.toObject(), solution: this.relevantSolution(solutions)});
       }
+      return resultProblems;
     }
-    return resultProblems;
+    return problems;
   }
 
   relevantSolution(solutions: Solution[]) {

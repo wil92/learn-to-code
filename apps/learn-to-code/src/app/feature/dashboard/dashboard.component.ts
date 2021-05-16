@@ -24,6 +24,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.authService.isLogin()) {
+      this.displayedColumns = ['title', 'actions'];
+    }
     this.updateListOfProblems();
   }
 
@@ -39,5 +42,6 @@ export class DashboardComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.displayedColumns = ['title', 'actions'];
   }
 }
