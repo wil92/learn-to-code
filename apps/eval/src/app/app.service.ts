@@ -30,6 +30,10 @@ export class AppService {
     const testInputPath = path.join(resourcesPath, testName + '.input');
     const testOutputPath = path.join(resourcesPath, testName + '.output');
 
+    if (!fs.existsSync(testInputPath) || !fs.existsSync(testOutputPath)) {
+      return 'ACCEPT';
+    }
+
     // toDo 08.05.21: this should change for use more than one language
     const python = spawn('python3', [codePath]);
 
