@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Problem} from "../../core/models/problem.model";
 import {MatTableDataSource} from "@angular/material/table";
 import {ProblemService} from "../../core/services/problem.service";
@@ -19,9 +19,9 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private problemService: ProblemService,
-    public authService: AuthService,
-    private router: Router
-    ) { }
+    public authService: AuthService
+  ) {
+  }
 
   ngOnInit(): void {
     this.updateListOfProblems();

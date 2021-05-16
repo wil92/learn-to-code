@@ -7,9 +7,14 @@ import {of} from "rxjs";
 import { ProblemDetailsComponent } from './problem-details.component';
 import {Environment} from "../../core/injectors/environment";
 import {ProblemService} from "../../core/services/problem.service";
+import {AuthService} from "../../core/services/auth.service";
 
 class ProblemServiceStub {
   getProblemById = () => of({});
+}
+
+class AuthServiceStub {
+  isLogin = () => false;
 }
 
 describe('ProblemDetailsComponent', () => {
@@ -22,6 +27,7 @@ describe('ProblemDetailsComponent', () => {
       declarations: [ ProblemDetailsComponent ],
       providers: [
         {provide: Environment, useValue: {}},
+        {provide: AuthService, useClass: AuthServiceStub},
         {provide: ProblemService, useClass: ProblemServiceStub}
       ],
       schemas: [NO_ERRORS_SCHEMA]

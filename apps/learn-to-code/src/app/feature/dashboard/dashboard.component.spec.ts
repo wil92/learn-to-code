@@ -6,9 +6,15 @@ import {of} from 'rxjs';
 
 import { DashboardComponent } from './dashboard.component';
 import {ProblemService} from "../../core/services/problem.service";
+import {AuthService} from "../../core/services/auth.service";
 
 class ProblemServiceStub {
   getProblems = () => of([]);
+}
+
+class AuthServiceStub {
+  isLogin = () => true;
+  isAdmin = () => true;
 }
 
 describe('DashboardComponent', () => {
@@ -19,7 +25,10 @@ describe('DashboardComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       declarations: [ DashboardComponent ],
-      providers: [{provide: ProblemService, useClass: ProblemServiceStub}],
+      providers: [
+        {provide: ProblemService, useClass: ProblemServiceStub},
+        {provide: AuthService, useClass: AuthServiceStub}
+      ],
       schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
