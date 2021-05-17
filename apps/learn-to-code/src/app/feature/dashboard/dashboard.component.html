@@ -25,9 +25,8 @@
     <ng-container matColumnDef="problem">
       <th mat-header-cell *matHeaderCellDef> Status</th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon *ngIf="!element?.solution" class="animate-loading loading">refresh</mat-icon>
         <mat-icon class="accept" *ngIf="element?.solution?.status === 'ACCEPT'">done</mat-icon>
-        <mat-icon class="loading" *ngIf="element?.solution?.status === 'PENDING'">pending</mat-icon>
+        <mat-icon class="animate-loading loading" *ngIf="element?.solution?.status === 'PENDING'">refresh</mat-icon>
         <mat-icon class="fail" *ngIf="element?.solution?.status === 'WRONG_ANSWER'">error</mat-icon>
       </td>
     </ng-container>
