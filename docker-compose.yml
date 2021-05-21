@@ -7,7 +7,7 @@ services:
     networks:
       - learn_network
     ports:
-      - '0.0.0.0:27017:27017'
+      - '127.0.0.1:27019:27017'
     volumes:
       - $DB_DATA_PATH:/data/db
 
