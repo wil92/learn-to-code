@@ -6,6 +6,8 @@ services:
     restart: always
     networks:
       - learn_network
+    ports:
+      - '0.0.0.0:27017:27017'
     volumes:
       - $DB_DATA_PATH:/data/db
 
@@ -28,6 +30,21 @@ services:
       - $RESOURCES_DATA_PATH:/app/resources
     ports:
       - '127.0.0.1:4555:80'
+    networks:
+      - learn_network
+
+  eval:
+    depends_on:
+      - database
+      - redis
+    build:
+      dockerfile: ./Dockerfile.eval
+      context: .
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - $RESOURCES_DATA_PATH:/app/resources
     networks:
       - learn_network
 

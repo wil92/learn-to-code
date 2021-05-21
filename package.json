@@ -10,7 +10,7 @@
     "start": "ng serve",
     "start:api": "ng serve api",
     "start:eval": "ng serve eval",
-    "build": "ng build --prod && ng build api && ng build eval",
+    "build": "ng build --prod && ng build api",
     "build:eval": "ng build eval",
     "test": "jest --ci --coverage",
     "lint": "nx workspace-lint && ng lint",

@@ -11,18 +11,17 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# install nginx in the container and config
-RUN apk add nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# install dependencies needed
+RUN apk add python3
 
 # copy the project
 COPY . ./
 
 # build project
-RUN npm run build
+RUN npm run build:eval
 
 # copy script to the root of the container
-COPY start-app.sh /start-app.sh
+COPY start-eval.sh /start-eval.sh
 
 # init container
-CMD ["/bin/sh", "/start-app.sh"]
+CMD ["/bin/sh", "/start-eval.sh"]
