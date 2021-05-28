@@ -34,14 +34,15 @@ export class DashboardComponent implements OnInit {
     this.problemService.deleteProblem(id).subscribe(() => this.updateListOfProblems());
   }
 
+  logout() {
+    this.authService.logout();
+    this.displayedColumns = ['title', 'actions'];
+    this.updateListOfProblems();
+  }
+
   updateListOfProblems() {
     this.problemService.getProblems().subscribe((problems) => {
       this.dataSource = new MatTableDataSource<Problem>(problems);
     });
-  }
-
-  logout() {
-    this.authService.logout();
-    this.displayedColumns = ['title', 'actions'];
   }
 }
