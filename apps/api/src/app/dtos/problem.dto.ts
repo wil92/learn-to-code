@@ -18,4 +18,7 @@ export class ProblemDto {
 
   @ApiProperty()
   outputExample: string;
+
+  @ApiProperty()
+  enabled: boolean;
 }

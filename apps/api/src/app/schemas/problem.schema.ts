@@ -22,6 +22,9 @@ export class Problem {
 
   @Prop()
   outputExample: string;
+
+  @Prop()
+  enabled: boolean;
 }
 
 export const ProblemSchema = SchemaFactory.createForClass(Problem);

@@ -22,7 +22,13 @@ export class ProblemService {
   }
 
   async findAll(user: User): Promise<Problem[]> {
-    const problems = await this.problemModel.find().exec();
+    let query = {};
+
+    if (!user || user.role !== 'admin') {
+      query = {enabled: true};
+    }
+
+    const problems = await this.problemModel.find(query).exec();
     if (user) {
       const resultProblems = [];
       for (let problem of problems) {
@@ -69,6 +75,7 @@ export class ProblemService {
     editedProblem.inputExample = problem.inputExample;
     editedProblem.outputDescription = problem.outputDescription;
     editedProblem.outputExample = problem.outputExample;
+    editedProblem.enabled = problem.enabled;
     await this.problemModel.updateOne({_id: id}, editedProblem);
     return editedProblem;
   }
