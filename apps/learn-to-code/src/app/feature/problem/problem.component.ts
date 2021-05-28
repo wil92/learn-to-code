@@ -26,6 +26,7 @@ export class ProblemComponent implements OnInit {
     inputExample: new FormControl('', [Validators.required]),
     outputDescription: new FormControl('', [Validators.required]),
     outputExample: new FormControl('', [Validators.required]),
+    enabled: new FormControl('', [Validators.required]),
   });
 
   initialProblem: Problem;
@@ -51,6 +52,7 @@ export class ProblemComponent implements OnInit {
         this.form.get('inputExample').setValue(problem.inputExample);
         this.form.get('outputDescription').setValue(problem.outputDescription);
         this.form.get('outputExample').setValue(problem.outputExample);
+        this.form.get('enabled').setValue(problem.enabled);
 
         this.updateFilesList();
       })
@@ -64,11 +66,13 @@ export class ProblemComponent implements OnInit {
       inputDescription: this.form.get('inputDescription').value,
       inputExample: this.form.get('inputExample').value,
       outputDescription: this.form.get('outputDescription').value,
-      outputExample: this.form.get('outputExample').value
+      outputExample: this.form.get('outputExample').value,
+      enabled: Boolean(this.form.get('enabled').value)
     } as Problem;
 
     let action: Observable<Problem>;
 
+    console.log(problem);
     if (this.isEditProblem) {
       action = this.problemService.editProblem(this.activeRouter.snapshot.paramMap.get('id'), problem);
     } else {

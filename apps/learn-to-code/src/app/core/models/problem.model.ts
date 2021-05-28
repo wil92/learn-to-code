@@ -7,6 +7,7 @@ export interface Problem {
   outputDescription: string;
   outputExample: string;
   solution: Solution;
+  enabled: boolean;
 }
 
 export interface Solution {
